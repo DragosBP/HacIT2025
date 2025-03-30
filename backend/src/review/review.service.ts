@@ -14,7 +14,17 @@ export class ReviewService {
     ) {}
 
     async getOneReview(id: string): Promise<Review> {
-        return this.reviewModel.findById(id).populate("comments").exec();
+        return this.reviewModel
+        .findById(id)
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'userId',
+                model: 'User',
+                select: 'firstName lastName', // Select only firstName and lastName
+            },
+        })
+        .exec();   
     }
 
     async createReview(createReviewDto: CreateReviewDto): Promise<Review> {
