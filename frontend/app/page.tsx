@@ -1,103 +1,80 @@
-import Image from "next/image";
+"use client";
+import React from 'react';
+import NavBar from './components/nav';
+import { useRouter } from "next/navigation";
+
+const neighborhoods = [
+  { name: "Băneasa", top: "20%", left: "45%" },
+  { name: "Tei", top: "39%", left: "57%" },
+  { name: "Tei Toboc", top: "34%", left: "61%" },
+  { name: "1 Mai", top: "35%", left: "32%" },
+  { name: "13 Septembrie", top: "54%", left: "39%" },
+  { name: "Aparatorii Patriei", top: "75%", left: "65%" },
+  { name: "Andronache", top: "30%", left: "67%" },
+  { name: "Aviatiei", top: "31%", left: "50%" },
+  { name: "Aviatorilor", top: "40%", left: "45%" },
+  { name: "Berceni", top: "70%", left: "55%" },
+  { name: "Bucurestii Noi", top: "24%", left: "30%" },
+  { name: "Carol", top: "58%", left: "50%" },
+  { name: "Centrul Vechi", top: "50%", left: "53%" },
+  { name: "Vitan", top: "59%", left: "59%" },
+  { name: "Chitila", top: "30%", left: "25%" },
+  { name: "Cismigiu", top: "49%", left: "49%" },
+  { name: "Colentina", top: "39%", left: "65%" },
+  { name: "Constantin Brancusi", top: "55%", left: "19%" },
+  { name: "Cotroceni", top: "50%", left: "42%" },
+  { name: "Crangasi", top: "42%", left: "30%" },
+  { name: "Decebal", top: "52%", left: "63%" },
+  { name: "Dorobanti", top: "40%", left: "48%" },
+  { name: "Dristor", top: "55%", left: "67%" },
+  { name: "Drumul Taberei", top: "55%", left: "35%" },
+  { name: "Ferentari", top: "65%", left: "45%" },
+  { name: "Floreasca", top: "35%", left: "53%" },
+  { name: "Gara de Nord", top: "44%", left: "40%" },
+  { name: "Giulesti", top: "36%", left: "28%" },
+  { name: "Grozavesti", top: "45%", left: "38%" },
+  { name: "Herastrau", top: "29%", left: "47%" },
+  { name: "Iancului", top: "48%", left: "61%" },
+  { name: "Izvor", top: "52%", left: "47%" },
+  { name: "Nerva Traian", top: "56%", left: "56%" },
+  { name: "Obor", top: "43%", left: "62%" },
+  { name: "Pantelimon", top: "45%", left: "75%" },
+  { name: "Rahova", top: "70%", left: "35%" },
+  { name: "Regie", top: "44%", left: "35%" },
+  { name: "Romana", top: "45%", left: "50%" },
+  { name: "Stefan cel Mare", top: "43%", left: "53%" },
+  { name: "Theodor Pallady", top: "62%", left: "80%" },
+  { name: "Timpuri Noi", top: "56%", left: "54%" },
+  { name: "Tineretului", top: "65%", left: "55%" },
+  { name: "Titan", top: "54%", left: "72%" },
+  { name: "Vacaresti", top: "64%", left: "60%" },
+];
 
 export default function Home() {
+  const route = useRouter();
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="flex flex-col bg-[#7f8c8d]">
+      <NavBar />
+      <div className='flex justify-center w-full scroll-x-hidden'>
+        <div className='relative'>
+          <img src='./harta.png' alt='harta' className='max-h-[93vh] max-w-[90vw]  rounded-[10%] py-8'></img>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          {neighborhoods.map((hood) => (
+            <button
+              key={hood.name}
+              style={{ top: hood.top, left: hood.left }}
+              onClick={() => route.push(`/${hood.name}`)}
+              className="absolute transform -translate-x-1/2 -translate-y-1/2"
+            >
+              <img 
+                src="/pin.png" 
+                alt="pin" 
+                className="w-14 h-14" 
+              />
+            </button>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
   );
 }
