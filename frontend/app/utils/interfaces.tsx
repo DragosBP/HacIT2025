@@ -33,3 +33,7 @@ export interface Cartier {
     reviews: Review[];
     loc: string;
 }
+
+export interface CommentsProps {
+    reviewId: string;
+}
