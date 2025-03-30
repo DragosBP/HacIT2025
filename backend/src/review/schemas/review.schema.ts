@@ -8,8 +8,8 @@ export class Review extends Document {
     @Prop({ required: true, type: MongooseSchema.Types.ObjectId, ref: 'User' })
     userId: User;
 
-    @Prop({ required: true, type: MongooseSchema.Types.ObjectId, ref: 'Cartier' })
-    cartierId: Cartier;
+    @Prop({ required: true})
+    cartierName: string;
 
     @Prop({ default: [], type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Comment' }] })
     comments: Comment[]

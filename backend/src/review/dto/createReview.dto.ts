@@ -10,8 +10,7 @@ export class CreateReviewDto {
     userId: User;
 
     @IsNotEmpty()
-    @Type(() => Cartier)
-    cartierId: Cartier;
+    cartierName: string;
 
     @IsString()
     @Transform(({ value }: TransformFnParams) => value.trim())

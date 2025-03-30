@@ -19,9 +19,10 @@ export class ReviewService {
 
     async createReview(createReviewDto: CreateReviewDto): Promise<Review> {
         // Find the corresponding Cartier
-        const cartier = await this.cartierModel.findById(createReviewDto.cartierId);
+        const cartier = await this.cartierModel.findOne({ name: createReviewDto.cartierName });
+
         if (!cartier) {
-            throw new NotFoundException(`Cartier with ID ${createReviewDto.cartierId} not found`);
+            throw new NotFoundException(`Cartier with name ${createReviewDto.cartierName} not found`);
         }
         
         // Create and save the review
