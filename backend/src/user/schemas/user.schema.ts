@@ -18,7 +18,7 @@ export class User extends Document {
     @Prop({ required: true })
     password: string;
 
-    @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Review' }] })
+    @Prop({ default: [], type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Review' }] })
     reviews: Review[]
 
     @Prop({ required: true, type: String, enum: Role, default: Role.User })
