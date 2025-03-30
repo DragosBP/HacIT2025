@@ -14,6 +14,10 @@ export class CreateReviewDto {
 
     @IsString()
     @IsNotEmpty()
+    title: string;
+
+    @IsString()
+    @IsNotEmpty()
     text: string;
 
     @IsNumber()

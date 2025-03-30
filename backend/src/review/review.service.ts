@@ -13,32 +13,29 @@ export class ReviewService {
         @InjectModel(Cartier.name) private cartierModel: Model<Cartier>,
     ) {}
 
-    async createReview(createReviewDto: CreateReviewDto): Promise<Review> {
-        // Create and save the review
-        const createdReview = new this.reviewModel(createReviewDto);
-        const savedReview = await createdReview.save();
+    async getOneReview(id: string): Promise<Review> {
+        return this.reviewModel.findById(id).populate("comments").exec();
+    }
 
+    async createReview(createReviewDto: CreateReviewDto): Promise<Review> {
         // Find the corresponding Cartier
         const cartier = await this.cartierModel.findById(createReviewDto.cartierId);
         if (!cartier) {
             throw new NotFoundException(`Cartier with ID ${createReviewDto.cartierId} not found`);
         }
+        
+        // Create and save the review
+        const createdReview = new this.reviewModel(createReviewDto);
+        const savedReview = await createdReview.save();
 
-        // Ensure we are pushing an ObjectId, not the full Review object
         cartier.reviews.push(savedReview);
         await cartier.save();
 
         return savedReview;
     }
 
-
     async editReview(editReviewDto: EditReviewDto): Promise<Review> {
         const { reviewId, text, grade } = editReviewDto;
-
-        // Ensure reviewId is a valid ObjectId
-        if (!Types.ObjectId.isValid(reviewId as any)) {
-            throw new NotFoundException(`Invalid review ID: ${reviewId}`);
-        }
 
         // Find and update the review
         const updatedReview = await this.reviewModel.findByIdAndUpdate(

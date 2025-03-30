@@ -12,6 +12,9 @@ import { CartierModule } from "src/cartier/cartier.module";
     ],
     providers: [ReviewService],
     controllers: [ReviewController],
-    exports: [ReviewService]
+    exports: [
+        ReviewService,
+        MongooseModule.forFeature([{ name: Review.name, schema: ReviewSchema }]),
+    ],
 })
 export class ReviewModule {}
