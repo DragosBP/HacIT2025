@@ -18,17 +18,17 @@ export class CommentController {
         return this.commentService.createComment(createCommentDto);
     }
 
-    // @UseGuards(JwtAuthGuard)
-    // @UseGuards(RolesGuard)
-    // @Roles(Role.Admin, Role.User)
+    @UseGuards(JwtAuthGuard)
+    @UseGuards(RolesGuard)
+    @Roles(Role.Admin, Role.User)
     @Post('/edit')
     async editComment(@Body() editCommentDto: EditCommentDto): Promise<Comment> {
         return this.commentService.editComment(editCommentDto);
     }
 
-    // @UseGuards(JwtAuthGuard)
-    // @UseGuards(RolesGuard)
-    // @Roles(Role.Admin, Role.User)
+    @UseGuards(JwtAuthGuard)
+    @UseGuards(RolesGuard)
+    @Roles(Role.Admin, Role.User)
     @Delete()
     async deleteComment(@Body() commentId: string ): Promise<boolean> {
         return this.commentService.deleteComment(commentId);

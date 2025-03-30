@@ -21,17 +21,17 @@ export class ReviewController {
             return cartier;
         }
 
-    // @UseGuards(JwtAuthGuard)
-    // @UseGuards(RolesGuard)
-    // @Roles(Role.Admin, Role.User)
+    @UseGuards(JwtAuthGuard)
+    @UseGuards(RolesGuard)
+    @Roles(Role.Admin, Role.User)
     @Post()
     async createReview(@Body() createReviewDto: CreateReviewDto): Promise<Review> {
         return this.reviewService.createReview(createReviewDto);
     }
 
-    // @UseGuards(JwtAuthGuard)
-    // @UseGuards(RolesGuard)
-    // @Roles(Role.Admin, Role.User)
+    @UseGuards(JwtAuthGuard)
+    @UseGuards(RolesGuard)
+    @Roles(Role.Admin, Role.User)
     @Post('/edit')
     async editReview(@Body() editReviewDto: EditReviewDto): Promise<Review> {
         return this.reviewService.editReview(editReviewDto);
