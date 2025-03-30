@@ -26,8 +26,8 @@ export class CartierController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @UseGuards(RolesGuard)
-    @Roles(Role.Admin)
+    // @UseGuards(RolesGuard)
+    // @Roles(Role.Admin)
     @Post()
     async createCartier(@Body() createDto: CreateCartierDto): Promise<Cartier> {
         return this.cartierService.createCartier(createDto);
