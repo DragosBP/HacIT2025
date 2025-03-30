@@ -15,6 +15,9 @@ export class Review extends Document {
     comments: Comment[]
 
     @Prop({ required: true })
+    title: string;
+    
+    @Prop({ required: true })
     text: string;
 
     @Prop({ default: 0 })
