@@ -33,4 +33,13 @@ export class CartierController {
         return this.cartierService.createCartier(createDto);
     }
 
+    @Get('name/:name')
+    async getCartierByName(@Param('name') name: string): Promise<Cartier[]> {
+        const cartiers = await this.cartierService.getCartierByName(name);
+        if (!cartiers || cartiers.length === 0) {
+            throw new NotFoundException('Cartier not found');
+        }
+        return cartiers;
+    }
+
 }
