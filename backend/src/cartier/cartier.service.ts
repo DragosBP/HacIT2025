@@ -21,4 +21,8 @@ export class CartierService {
     async getOneCartier(id: string): Promise<Cartier> {
         return this.cartierModel.findById(id).populate("reviews").exec();
     }
+
+    async getCartierByName(name: string): Promise<Cartier[]> {
+        return this.cartierModel.find({ name }).populate("reviews").exec();
+    }
 }
