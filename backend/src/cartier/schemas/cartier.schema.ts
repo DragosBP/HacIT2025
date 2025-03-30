@@ -16,14 +16,11 @@ export class Cartier extends Document {
     @Prop()
     sector: string;
 
-    @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Review' }] })
+    @Prop({ default: [], type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Review' }] })
     reviews: Review[]
 
     @Prop({ required: true })
     loc: string;
-
-    @Prop({ default: 0 })
-    meanGrade: number;
 }
 
 export const CartierSchema = SchemaFactory.createForClass(Cartier)
