@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import NavBar from './components/nav';
+import { useRouter } from "next/navigation";
 
 const neighborhoods = [
   { name: "Băneasa", top: "20%", left: "45%" },
@@ -50,6 +51,7 @@ const neighborhoods = [
 ];
 
 export default function Home() {
+  const route = useRouter();
   return (
     <div className="flex flex-col bg-[#7f8c8d]">
       <NavBar />
@@ -61,7 +63,7 @@ export default function Home() {
             <button
               key={hood.name}
               style={{ top: hood.top, left: hood.left }}
-              onClick={() => alert(`You clicked on ${hood.name}`)}
+              onClick={() => route.push(`/${hood.name}`)}
               className="absolute transform -translate-x-1/2 -translate-y-1/2"
             >
               <img 
