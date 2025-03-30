@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsOptional, IsNumber, IsArray } from "class-validator";
+import { IsNotEmpty, IsString, IsOptional } from "class-validator";
 import { Transform, TransformFnParams } from 'class-transformer';
 
 

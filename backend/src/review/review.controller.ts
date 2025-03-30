@@ -1,8 +1,12 @@
-import { Controller, Post, Body, Get, Param, NotFoundException } from "@nestjs/common";
+import { Controller, Post, Body, Get, Param, NotFoundException, UseGuards } from "@nestjs/common";
 import { ReviewService } from "./review.service";
 import { CreateReviewDto } from "./dto/createReview.dto"; // DTO for creating a review
 import { Review } from "src/review/schemas/review.schema";
 import { EditReviewDto } from "./dto/editReview.dto";
+import { JwtAuthGuard } from "src/common/guards/auth.guard";
+import { RolesGuard } from "src/common/guards/role.guard";
+import { Role } from "src/common/enums/role.enum";
+import { Roles } from "src/common/decorators/role.decorator";
 
 @Controller('review')
 export class ReviewController {
@@ -17,11 +21,17 @@ export class ReviewController {
             return cartier;
         }
 
+    // @UseGuards(JwtAuthGuard)
+    // @UseGuards(RolesGuard)
+    // @Roles(Role.Admin, Role.User)
     @Post()
     async createReview(@Body() createReviewDto: CreateReviewDto): Promise<Review> {
         return this.reviewService.createReview(createReviewDto);
     }
 
+    // @UseGuards(JwtAuthGuard)
+    // @UseGuards(RolesGuard)
+    // @Roles(Role.Admin, Role.User)
     @Post('/edit')
     async editReview(@Body() editReviewDto: EditReviewDto): Promise<Review> {
         return this.reviewService.editReview(editReviewDto);

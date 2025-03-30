@@ -13,6 +13,7 @@ export class CommentService {
         @InjectModel(Review.name) private reviewModel: Model<Review>,
     ) {}
 
+    
     async createComment(createCommentDto: CreateCommentDto): Promise<Comment> {
         const reviewId = createCommentDto.reviewId
 
@@ -46,7 +47,7 @@ export class CommentService {
             return updatetComment;
         }
 
-    async deleteComment(commentId): Promise<boolean> {
+    async deleteComment(commentId: string): Promise<boolean> {
         await this.commentModel.deleteOne({
             _id: commentId
         })

@@ -1,7 +1,11 @@
-import { Body, Controller, Get, NotFoundException, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, NotFoundException, Param, Post, UseGuards } from "@nestjs/common";
 import { CartierService } from "./cartier.service";
 import { Cartier } from "src/cartier/schemas/cartier.schema";
 import { CreateCartierDto } from "./dto/createCartier.dto";
+import { JwtAuthGuard } from "src/common/guards/auth.guard";
+import { RolesGuard } from "src/common/guards/role.guard";
+import { Roles } from "src/common/decorators/role.decorator";
+import { Role } from "src/common/enums/role.enum";
 
 @Controller('cartier')
 export class CartierController {
@@ -21,6 +25,9 @@ export class CartierController {
         return cartier;
     }
 
+    // @UseGuards(JwtAuthGuard)
+    // @UseGuards(RolesGuard)
+    // @Roles(Role.Admin)
     @Post()
     async createCartier(@Body() createDto: CreateCartierDto): Promise<Cartier> {
         return this.cartierService.createCartier(createDto);

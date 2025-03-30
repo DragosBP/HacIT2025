@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CartierModule } from './cartier/cartier.module';
 import { ReviewModule } from './review/review.module';
 import { CommentModule } from './comment/comment.module';
+import { UserModule } from './user/user.module';
 
 const envModule = ConfigModule.forRoot({
   isGlobal: true,
@@ -17,6 +18,7 @@ const envModule = ConfigModule.forRoot({
     CartierModule,
     ReviewModule,
     CommentModule,
+    UserModule,
     MongooseModule.forRoot(process.env.DATABASE_URL || '')
   ],
   controllers: [],
