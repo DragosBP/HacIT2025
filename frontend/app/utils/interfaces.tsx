@@ -4,3 +4,7 @@ export interface User {
     lastName: string;
     email: string;
 }
+
+export interface CommentsProps {
+    reviewId: string;
+}

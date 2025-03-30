@@ -8,7 +8,7 @@ import { RolesGuard } from "src/common/guards/role.guard";
 import { Role } from "src/common/enums/role.enum";
 import { Roles } from "src/common/decorators/role.decorator";
 
-@Controller('review')
+@Controller('reviews')
 export class ReviewController {
     constructor(private readonly reviewService: ReviewService) {}
 
